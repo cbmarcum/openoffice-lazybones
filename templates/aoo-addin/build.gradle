@@ -1,0 +1,109 @@
+
+plugins {
+    // Apply the groovy plugin to add support for Groovy
+    id 'groovy'
+
+    // Apply the java-library plugin for API and implementation separation.
+    id 'java-library'
+
+    /*
+    The plugin builds a distribution for your library. The distribution will
+    package up the runtime dependencies of the library. All files stored in
+    src/main/dist will be added to the root of the archive distribution.
+    You can run “gradle distZip” to create a ZIP file containing the distribution.
+     */
+    id 'java-library-distribution'
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+
+    // implementation 'org.codehaus.groovy:groovy-all:3.0.4'
+    compileOnly 'org.codehaus.groovy:groovy-all:3.0.4'
+    
+    // not put on runtimeClasspath since the're available to the office already
+    // this way the're not added to the jar classPath or put in lib and packaged in oxt
+    compileOnly "net.codebuilders:juh:4.1.6" // not needed according to dev guide
+    compileOnly "net.codebuilders:ridl:4.1.6"
+    compileOnly "net.codebuilders:unoil:4.1.6"
+    compileOnly "net.codebuilders:jurt:4.1.6"
+
+    // Use the awesome Spock testing and specification framework
+    testImplementation 'org.spockframework:spock-core:2.0-M2-groovy-3.0'
+}
+
+ant.importBuild 'ant/build.xml'
+
+version = '${project_version}'
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+
+// exclude the XML and IDL files from compilation
+sourceSets {
+    main {
+        groovy {
+            exclude "**/*.xml"
+            exclude "**/*.idl"
+        }
+    }
+}
+
+// include the IDL types jar in the OXT
+distributions {
+    main {
+        contents {
+            from "build/libs/${project_class_name}_IDL_types.jar"
+            from "build/idl/rdb/types.rdb"
+        }
+    }
+}
+
+jar {
+    archiveFileName = "${project_class_name}.jar"
+    manifest {
+        attributes('UNO-Type-Path': '${project_class_name}_IDL_types.jar',
+                'RegistrationClassName': '${project_package}.CentralRegistrationClass',
+                'Class-Path': configurations.runtimeClasspath.collect { "lib/" + it.getName() }.join(' '))
+        // we need this for new section named ${package_path}/CentralRegistrationClass.class
+        attributes('RegistrationClasses': '${project_package}.${project_class_name}Impl', '${package_path}/CentralRegistrationClass.class')
+    }
+}
+
+
+tasks.named('compileGroovy') {
+    // add IDL type classes to the classpath
+    classpath += files("build/classes")
+}
+
+// fix for extra top dir in OXT
+distributions {
+    main {
+        // distributionBaseName = '${project_name}'
+        contents {
+            from {
+                "${build}/distribution-files/application"
+            }
+            into '/'
+            // filesMatching("**/*.xml") {
+            //     expand(project.properties)
+            // }
+        }
+    }
+}
+
+distZip {
+    archiveExtension = 'oxt'
+    entryCompression = ZipEntryCompression.STORED
+}
+
+compileGroovy.dependsOn("jar-idl-types")
