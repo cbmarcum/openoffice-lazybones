@@ -48,11 +48,11 @@ In this project you get:
            |     |     |
            |     |     +- <your-package>
            |     |     |    |
-           |     |     |    +- CentralRegistrationClass.java
+           |     |     |    +- CentralRegistrationClass.groovy
            |     |     |    |
            |     |     |    +- ${project_class_name}.idl
            |     |     |    |
-           |     |     |    +- ${project_class_name}Impl.java
+           |     |     |    +- ${project_class_name}Impl.groovy
            |     |     |    |
            |     |     |    +- X${project_class_name}.idl
            |     |
@@ -61,8 +61,16 @@ In this project you get:
            +- test
                 |
                 +- groovy
+
  ```
-You need to: 
+## Using the project: 
 1. Edit the build.gradle file and add any additional dependencies if needed.
-1. Edit X${project_class_name}.idl for your new functions and parameters.
-1. Edit CalcAddins.xcu for your new functions and parameters.
+2. Edit X${project_class_name}.idl for your new functions and parameters.
+3. Edit ${project_class_name}Impl.groovy for your new functions and parameters.
+3. Edit CalcAddins.xcu for your new functions and parameters.
+
+## Building the Extension
+- Clean and build the extension with:
+```
+./gradlew distZip
+```

@@ -4,8 +4,7 @@ Apache OpenOffice Client Application project template
 You have just created a basic Apache OpenOffice Client application. 
 There is a standard project structure for source code and tests.
 Simply add your source files to `src/main/<groovy or java>`, your test cases 
-to `src/test/<groovy or java>` and then you will be able to build your project 
-with `gradle jar` and run with `gradle runJar`.
+to `src/test/<groovy or java>` and see below for running your application.
 
 In this project you get:
 
@@ -22,7 +21,7 @@ In this project you get:
            |     |     |
            |     |     +- <your-package>
            |     |     |    |
-           |     |     |    +- <your-class>.groovy
+           |     |     |    +- ${project_class_name}.groovy
            |     |     |          
            |     |     |          
            |     |     |
@@ -68,7 +67,17 @@ In this project you get:
                 |
                 +- groovy
  
-You need to edit the build.gradle file for the location of the GroovyUnoExtension 
-jar file and also add any additional dependencies if needed.
 
+## Using the project: 
+1. Add any dependencies to build.gradle.
+2. Add logic to ${project_class_name}.groovy.
 
+## Building the Extension
+- Clean and build archives for distribution:
+```
+./gradlew assemble
+```
+- Clean and build an install directory with a runnable project unpacked:
+```
+./gradlew installDist
+```

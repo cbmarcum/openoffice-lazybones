@@ -23,8 +23,7 @@ repositories {
 
 dependencies {
 
-    // implementation 'org.codehaus.groovy:groovy-all:3.0.4'
-    compileOnly 'org.codehaus.groovy:groovy-all:3.0.4'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.4'
     
     // not put on runtimeClasspath since the're available to the office already
     // this way the're not added to the jar classPath or put in lib and packaged in oxt
@@ -106,4 +105,5 @@ distZip {
     entryCompression = ZipEntryCompression.STORED
 }
 
+compileGroovy.dependsOn("clean") 
 compileGroovy.dependsOn("jar-idl-types")
