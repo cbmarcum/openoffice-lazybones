@@ -1,0 +1,25 @@
+/*
+ * X${project_class_name}.idl
+ *
+ * Created on 2020.07.31 - 18:17:08
+ *
+ */
+
+#ifndef _${module_path}_X${project_class_name}_
+#define _${module_path}_X${project_class_name}_
+
+#include <com/sun/star/lang/XLocalizable.idl>
+
+#include <com/sun/star/uno/XInterface.idl>
+
+// TODO: fix these for function names and parameters
+${module_start}
+    interface X${project_class_name} {
+        /// used to set an add-in locale for formatting reasons for example
+        [optional] interface ::com::sun::star::lang::XLocalizable;
+
+        string myFunction([in] string parameter0);
+    };
+${module_end}
+
+#endif

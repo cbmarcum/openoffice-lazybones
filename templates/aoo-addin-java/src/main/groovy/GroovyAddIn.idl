@@ -1,0 +1,17 @@
+/*
+ * ${project_class_name}.idl
+ *
+ * Created on 2020.07.31 - 18:17:08
+ *
+ */
+
+#ifndef _${module_path}_${project_class_name}_
+#define _${module_path}_${project_class_name}_
+
+#include "X${project_class_name}.idl"
+
+${module_start}
+    service ${project_class_name} : X${project_class_name};
+${module_end}
+
+#endif
