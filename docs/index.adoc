@@ -1,0 +1,12 @@
+= OpenOffice-Lazybones Documentation
+:author: Carl Marcum
+:email: carl.marcum@codebuilders.net
+:toc: left
+
+== Introduction
+Lazybones project templates for Apache OpenOffice UNO projects.
+
+Lazybones is project creation tool that uses template projects with thier directory structures and files to create new project layouts. Users can provide needed information on the command-line or be prompted for it. Lazybones takes the information and processes the templates into a new project.
+
+*UNO* stands for *Universal Network Objects* and is the base component technology for **Apache OpenOffice**.
+
