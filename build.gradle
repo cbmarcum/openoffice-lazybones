@@ -14,7 +14,7 @@ apply plugin: "uk.co.cacoethes.lazybones-templates"
 
 // keep track of a universal version here. 
 // update all template's VERSION files with this version.
-// version 0.2.0
+// version 0.3.0
 
 lazybones {
     repositoryName = "<account>/<templates-repo>"

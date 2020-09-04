@@ -41,13 +41,11 @@ import java.util.StringTokenizer
 import java.util.jar.Attributes
 import java.util.jar.Manifest
 
-/**
- *
- * @author carl
- */
-public class CentralRegistrationClass {
+
+@groovy.transform.CompileStatic
+class CentralRegistrationClass {
     
-    public static XSingleComponentFactory __getComponentFactory( String sImplementationName ) {
+    static XSingleComponentFactory __getComponentFactory( String sImplementationName ) {
         String regClassesList = getRegistrationClasses()
         StringTokenizer t = new StringTokenizer(regClassesList, " ")
         while (t.hasMoreTokens()) {
@@ -55,7 +53,6 @@ public class CentralRegistrationClass {
             if (className != null && className.length() != 0) {
                 try {
                     Class regClass = Class.forName(className)
-                    // groovy way with since groovy doesn't support the array initialization that was on the second line down
                     Class[] classArray = [String.class] as Class[]
                     Method writeRegInfo = regClass.getDeclaredMethod("__getComponentFactory", classArray)
                     Object result = writeRegInfo.invoke(regClass, sImplementationName)
@@ -83,7 +80,7 @@ public class CentralRegistrationClass {
         return null
     }
 
-    public static boolean __writeRegistryServiceInfo( XRegistryKey xRegistryKey ) {
+    static boolean __writeRegistryServiceInfo( XRegistryKey xRegistryKey ) {
         boolean bResult = true
         String regClassesList = getRegistrationClasses()
         StringTokenizer t = new StringTokenizer(regClassesList, " ")
@@ -92,7 +89,6 @@ public class CentralRegistrationClass {
             if (className != null && className.length() != 0) {
                 try {
                     Class regClass = Class.forName(className)
-                    // groovy way with since groovy doesn't support the array initialization that was on the second line down
                     Class[] classArray = [XRegistryKey.class] as Class[]
                     Method writeRegInfo = regClass.getDeclaredMethod("__writeRegistryServiceInfo", classArray)
                     Object result = writeRegInfo.invoke(regClass, xRegistryKey)
@@ -119,15 +115,14 @@ public class CentralRegistrationClass {
     }
 
     private static String getRegistrationClasses() {
-        CentralRegistrationClass c = new CentralRegistrationClass();
+        CentralRegistrationClass c = new CentralRegistrationClass()
         String name = c.getClass().getCanonicalName().replace('.', '/').concat(".class")
         try {
             Enumeration<URL> urlEnum = c.getClass().getClassLoader().getResources("META-INF/MANIFEST.MF")
             while (urlEnum.hasMoreElements()) {
                 URL url = urlEnum.nextElement()
                 String file = url.getFile()
-                JarURLConnection jarConnection =
-                    (JarURLConnection) url.openConnection()
+                JarURLConnection jarConnection = (JarURLConnection) url.openConnection()
                 Manifest mf = jarConnection.getManifest()
 
                 Attributes attrs = (Attributes) mf.getAttributes(name)

@@ -78,6 +78,6 @@ testSources.eachFile { File file ->
     renameFile(file, testSourcesPath.absolutePath + '/' + props.project_capitalized_name + file.name)
 }
 
-renameFile(new File(mainSourcesPath, 'GroovyAddInImpl.java'), mainSourcesPath.absolutePath + '/' + props.project_class_name + "Impl.java")
+renameFile(new File(mainSourcesPath, 'GroovyAddInImpl.groovy'), mainSourcesPath.absolutePath + '/' + props.project_class_name + "Impl.groovy")
 renameFile(new File(mainSourcesPath, 'GroovyAddIn.idl'), mainSourcesPath.absolutePath + '/' + props.project_class_name + ".idl")
 renameFile(new File(mainSourcesPath, 'XGroovyAddIn.idl'), mainSourcesPath.absolutePath + '/X' + props.project_class_name + ".idl")
