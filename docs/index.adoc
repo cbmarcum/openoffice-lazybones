@@ -6,7 +6,77 @@
 == Introduction
 Lazybones project templates for Apache OpenOffice UNO projects.
 
-Lazybones is project creation tool that uses template projects with thier directory structures and files to create new project layouts. Users can provide needed information on the command-line or be prompted for it. Lazybones takes the information and processes the templates into a new project.
+Lazybones is project creation tool by Peter Ledbrook that uses template projects with their directory structures and files to create new project layouts. Users can provide needed information on the command-line or be prompted for it. Lazybones takes the information and processes the templates into a new project.
 
 *UNO* stands for *Universal Network Objects* and is the base component technology for **Apache OpenOffice**.
+
+== Available Templates
+Currently there are templates available for creating Apache OpenOffice UNO Client applications and Calc Spreadsheet Add-Ins for creating custom functions in Calc. Next up in development is a UNO Add-On template for creating Extensions for adding new functionality to all OpenOffice applications.
+
+== Get Lazybones
+Lazybones can be installed using the SdkMan Software Deveplopment Kit Manager.
+
+If you don't already have it you can easily get and install it with this command:
+
+[source, bash]
+----
+$ curl -s "https://get.sdkman.io" | bash
+----
+Then install Lazybones with:
+[source, bash]
+----
+$ sdk install lazybones
+----
+
+== Configure Lazybones
+First you'll need to add our Bintray repository in addition to the default pledbrook repo.
+Create or edit your ~/.lazybones/config.groovy file with these contents:
+[source, groovy]
+----
+bintrayRepositories = [
+      "cmarcum/lazybones-templates",
+      "pledbrook/lazybones-templates"
+]
+----
+Now the tool will search both repositories for templates.  You can see the available templates with the list command:
+[source, bash]
+----
+$ lazybones list
+Available templates in cmarcum/lazybones-templates
+
+    aoo-addin
+    aoo-addin-java
+    aoo-client
+
+Available templates in pledbrook/lazybones-templates
+    ...
+----
+You can find out more information about a template with the _info <template name>_ command:
+[source, bash]
+----
+$ lazybones info aoo-addin
+Fetching package information for 'aoo-addin' from Bintray
+Name:        aoo-addin
+Latest:      0.3.0
+Description: Lazybones Apache OpenOffice Addin Template
+Owner:       cmarcum
+Versions:    0.3.0, 0.2.0, 0.1.0
+----
+
+== Project Creation
+To create a project from a template use the _lazybones create <template name> <template version> <target directory>_ command. 
+
+ex. file-utils-addin from aoo-addin template version 0.3.0 template:
+[source, bash]
+----
+$ lazybones create aoo-addin 0.3.0 file-utils-addin
+Creating project from template aoo-addin 0.3.0 in 'file-utils-addin'
+Define value for 'group' [org.example]: net.codebuilders
+Define value for 'artifactId' [file-utils-addin]: 
+Define value for 'version' [0.1.0]: 
+Define value for 'package' [net.codebuilders]: 
+Define value for 'className' [FileUtilsAddin]: 
+----
+
+
 

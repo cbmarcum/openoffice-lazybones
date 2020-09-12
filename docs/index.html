@@ -448,6 +448,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#trueintroduction">Introduction</a></li>
+<li><a href="#trueavailable-templates">Available Templates</a></li>
+<li><a href="#trueget-lazybones">Get Lazybones</a></li>
+<li><a href="#trueconfigure-lazybones">Configure Lazybones</a></li>
+<li><a href="#trueproject-creation">Project Creation</a></li>
 </ul>
 </div>
 </div>
@@ -459,17 +463,118 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Lazybones project templates for Apache OpenOffice UNO projects.</p>
 </div>
 <div class="paragraph">
-<p>Lazybones is project creation tool that uses template projects with thier directory structures and files to create new project layouts. Users can provide needed information on the command-line or be prompted for it. Lazybones takes the information and processes the templates into a new project.</p>
+<p>Lazybones is project creation tool by Peter Ledbrook that uses template projects with their directory structures and files to create new project layouts. Users can provide needed information on the command-line or be prompted for it. Lazybones takes the information and processes the templates into a new project.</p>
 </div>
 <div class="paragraph">
 <p><strong>UNO</strong> stands for <strong>Universal Network Objects</strong> and is the base component technology for <strong>Apache OpenOffice</strong>.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="trueavailable-templates"><a class="anchor" href="#trueavailable-templates"></a>Available Templates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Currently there are templates available for creating Apache OpenOffice UNO Client applications and Calc Spreadsheet Add-Ins for creating custom functions in Calc. Next up in development is a UNO Add-On template for creating Extensions for adding new functionality to all OpenOffice applications.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trueget-lazybones"><a class="anchor" href="#trueget-lazybones"></a>Get Lazybones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lazybones can be installed using the SdkMan Software Deveplopment Kit Manager.</p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t already have it you can easily get and install it with this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl -s "https://get.sdkman.io" | bash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then install Lazybones with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ sdk install lazybones</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trueconfigure-lazybones"><a class="anchor" href="#trueconfigure-lazybones"></a>Configure Lazybones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First you&#8217;ll need to add our Bintray repository in addition to the default pledbrook repo.
+Create or edit your ~/.lazybones/config.groovy file with these contents:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="groovy" class="language-groovy hljs">bintrayRepositories = [
+      "cmarcum/lazybones-templates",
+      "pledbrook/lazybones-templates"
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the tool will search both repositories for templates.  You can see the available templates with the list command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ lazybones list
+Available templates in cmarcum/lazybones-templates
+
+    aoo-addin
+    aoo-addin-java
+    aoo-client
+
+Available templates in pledbrook/lazybones-templates
+    ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find out more information about a template with the <em>info &lt;template name&gt;</em> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ lazybones info aoo-addin
+Fetching package information for 'aoo-addin' from Bintray
+Name:        aoo-addin
+Latest:      0.3.0
+Description: Lazybones Apache OpenOffice Addin Template
+Owner:       cmarcum
+Versions:    0.3.0, 0.2.0, 0.1.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trueproject-creation"><a class="anchor" href="#trueproject-creation"></a>Project Creation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To create a project from a template use the <em>lazybones create &lt;template name&gt; &lt;template version&gt; &lt;target directory&gt;</em> command.</p>
+</div>
+<div class="paragraph">
+<p>ex. file-utils-addin from aoo-addin template version 0.3.0 template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ lazybones create aoo-addin 0.3.0 file-utils-addin
+Creating project from template aoo-addin 0.3.0 in 'file-utils-addin'
+Define value for 'group' [org.example]: net.codebuilders
+Define value for 'artifactId' [file-utils-addin]:
+Define value for 'version' [0.1.0]:
+Define value for 'package' [net.codebuilders]:
+Define value for 'className' [FileUtilsAddin]:</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-21 19:00:05 -0400
+Last updated 2020-09-12 18:22:02 -0400
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
