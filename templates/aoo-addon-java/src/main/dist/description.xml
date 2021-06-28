@@ -14,8 +14,8 @@
     <!-- update-information -->
 
     <registration>
-        <simple-license accept-by="admin" default-license-id="en">
-            <license-text lang="en" license-id="en" xlink:href="licenses/LICENSE"/>
+        <simple-license accept-by="admin" suppress-on-update="false" default-license-id="en">
+            <license-text xlink:href="registration/LICENSE" lang="en-US"/>
         </simple-license>
     </registration>
 
