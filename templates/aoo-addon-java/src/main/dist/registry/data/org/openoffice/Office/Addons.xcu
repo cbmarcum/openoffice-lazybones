@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="Addons" oor:package="org.openoffice.Office">
+    
+    <node oor:name="AddonUI">
+        <!-- A menu defined in this set will be a top-level menu in the Apache OpenOffice Menu Bar.  -->
+        <node oor:name="OfficeMenuBar">
+            <node oor:name="com.example.groovyaddon" oor:op="replace">
+                <prop oor:name="Title" oor:type="xs:string">
+                    <value/>
+                    <value xml:lang="en">AddOn Menu</value>
+                </prop>
+                <prop oor:name="Target" oor:type="xs:string">
+                    <value>_self</value>
+                </prop>
+                <prop oor:name="ImageIdentifier" oor:type="xs:string"> <!-- Obsolete -->
+                    <value/>
+                </prop>
+                <node oor:name="Submenu">
+                    <node oor:name="m1" oor:op="replace">
+                        <prop oor:name="URL" oor:type="xs:string">
+                            <value>com.example.groovyaddon:Command0</value>
+                        </prop>
+                        <prop oor:name="ImageIdentifier" oor:type="xs:string">
+                            <value/>
+                        </prop>
+                        <prop oor:name="Target" oor:type="xs:string">
+                            <value>_self</value>
+                        </prop>
+                        <prop oor:name="Context" oor:type="xs:string">
+                            <value/>
+                        </prop>
+                        <prop oor:name="Title" oor:type="xs:string">
+                            <value/>
+                            <value xml:lang="en">Command 0</value>
+                        </prop>
+                    </node>
+                    <node oor:name="m2" oor:op="replace">
+                        <prop oor:name="URL" oor:type="xs:string">
+                            <value>com.example.groovyaddon:Command1</value>
+                        </prop>
+                        <prop oor:name="ImageIdentifier" oor:type="xs:string"> <!-- Obsolete -->
+                            <value/>
+                        </prop>
+                        <prop oor:name="Target" oor:type="xs:string">
+                            <value>_self</value>
+                        </prop>
+                        <prop oor:name="Context" oor:type="xs:string">
+                            <value/>
+                        </prop>
+                        <prop oor:name="Title" oor:type="xs:string">
+                            <value/>
+                            <value xml:lang="en">Command 1</value>
+                        </prop>
+                    </node>
+                </node>
+            </node>
+        </node>
+        <!-- Toolbars -->
+        <node oor:name="OfficeToolBar">
+            <!-- Toolbar -->
+            <node oor:name="com.example.groovyaddon" oor:op="replace">
+                <prop oor:name="Title" oor:type="xs:string" oor:localized="true">
+                    <value xml:lang="en">AddOnToolbar</value>
+                </prop>
+                <node oor:name="ToolBarItems">
+                    <!-- Toolbar Item Command0 -->
+                    <node oor:name="m1" oor:op="replace">
+                        <prop oor:name="URL" oor:type="xs:string">
+                            <value>com.example.groovyaddon:Command0</value>
+                        </prop>
+                        <prop oor:name="ImageIdentifier" oor:type="xs:string"> <!-- Obsolete -->
+                            <value/>
+                        </prop>
+                        <prop oor:name="Target" oor:type="xs:string">
+                            <value>_self</value>
+                        </prop>
+                        <prop oor:name="Context" oor:type="xs:string">
+                            <!-- applications the item should appear in
+                            com.sun.star.frame.Bibliography,
+                            com.sun.star.chart.ChartDocument,
+                            com.sun.star.sdb.OfficeDatabaseDocument,
+                            com.sun.star.drawing.DrawingDocument,
+                            com.sun.star.formula.FormulaProperties,
+                            com.sun.star.presentation.PresentationDocument,
+                            com.sun.star.sheet.SpreadsheetDocument,
+                            com.sun.star.text.TextDocument,
+                            com.sun.star.text.GlobalDocument -->
+                            <value>com.sun.star.text.TextDocument</value>
+                        </prop>
+                        <prop oor:name="Title" oor:type="xs:string">
+                            <value/>
+                            <value xml:lang="en">Command 0</value>
+                        </prop>
+                    </node>
+                    <!-- Toolbar Item Seperator -->
+                    <node oor:name="m2" oor:op="replace">
+                        <prop oor:name="URL" oor:type="xs:string">
+                            <value>private:separator</value>
+                        </prop>
+                    </node>
+                    <!-- Toolbar Item Command1 -->
+                    <node oor:name="m3" oor:op="replace">
+                        <prop oor:name="URL" oor:type="xs:string">
+                            <value>com.example.groovyaddon:Command1</value>
+                        </prop>
+                        <prop oor:name="ImageIdentifier" oor:type="xs:string"> <!-- Obsolete -->
+                            <value/>
+                        </prop>
+                        <prop oor:name="Target" oor:type="xs:string">
+                            <value>_self</value>
+                        </prop>
+                        <prop oor:name="Context" oor:type="xs:string">
+                            <value>com.sun.star.text.TextDocument</value>
+                        </prop>
+                        <prop oor:name="Title" oor:type="xs:string">
+                            <value/>
+                            <value xml:lang="en">Command 1</value>
+                        </prop>
+                    </node>
+                </node>
+            </node>
+        </node>
+        <node oor:name="Images">
+            <node oor:name="com.example.groovyaddon.command0.images" oor:op="replace">
+                <prop oor:name="URL" oor:type="xs:string">
+                    <value>com.example.groovyaddon:Command0</value>
+                </prop>
+                <node oor:name="UserDefinedImages">
+                    <prop oor:name="ImageSmallURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                    </prop>
+                    <prop oor:name="ImageBigURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                    </prop>
+                    <prop oor:name="ImageSmallHCURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                    </prop>
+                    <prop oor:name="ImageBigHCURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                    </prop>
+                </node>
+            </node>
+            <node oor:name="com.example.groovyaddon.command1.images" oor:op="replace">
+                <prop oor:name="URL" oor:type="xs:string">
+                    <value>com.example.groovyaddon:Command1</value>
+                </prop>
+                <node oor:name="UserDefinedImages">
+                    <prop oor:name="ImageSmallURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                    </prop>
+                    <prop oor:name="ImageBigURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                    </prop>
+                    <prop oor:name="ImageSmallHCURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                    </prop>
+                    <prop oor:name="ImageBigHCURL">
+                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                    </prop>
+                </node>
+            </node>
+        </node>
+    </node>
+</oor:component-data>
