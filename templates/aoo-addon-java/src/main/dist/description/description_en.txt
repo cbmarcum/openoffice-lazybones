@@ -1,0 +1,1 @@
+My Awesome Addon is an extension to add functionality to Apache OpenOffice Applications.

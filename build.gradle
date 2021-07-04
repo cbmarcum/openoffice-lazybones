@@ -1,8 +1,12 @@
 buildscript {
     repositories {
+
+        /*
         maven {
-            url "http://dl.bintray.com/pledbrook/plugins"
-        }
+             url "http://dl.bintray.com/pledbrook/plugins"
+         }
+         */
+        jcenter()
     }
 
     dependencies {
