@@ -1,4 +1,4 @@
-Apache OpenOffice Add-On for Java project template
+Apache OpenOffice Add-On for Groovy project template
 -----------------------------------------------------
 
 You have just created a basic Apache OpenOffice Add-On project. 
@@ -74,9 +74,9 @@ In this project you get:
 |   |   |   |
 |   |   |   +-- <your-package>
 |   |   |       |
-|   |   |       +-- CentralRegistrationClass.java
+|   |   |       +-- CentralRegistrationClass.groovy
 |   |   |       |
-|   |   |       +-- ${project_class_name}.java
+|   |   |       +-- ${project_class_name}.groovy
 |   |   |
 |   |   +-- resources
 |   |
@@ -98,7 +98,7 @@ In this project you get:
  ```
 ## Using the project
 1. Edit the build.gradle file and add any additional dependencies if needed.
-3. Edit ${project_class_name}.java for your new commands.
+3. Edit ${project_class_name}.groovy for your new commands.
 4. Edit Addons.xcu for your new commands.
 
 
