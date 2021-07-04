@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- dist/description.xml -->
 <!--Created with Apache OpenOffice API AddOn Gradle Project Template by Code Builders, LLC -->
 <description xmlns="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <version value="0.0.1"/>
-    <identifier value="com.example.GroovyAddOn"/>
+    <version value="${project_version}"/>
+    <identifier value="${project_package}.${project_class_name}"/>
 
     <platform value="all"/>
 
@@ -14,7 +13,7 @@
     <!-- update-information -->
 
     <registration>
-        <simple-license accept-by="admin" suppress-on-update="false" default-license-id="en">
+        <simple-license accept-by="admin" suppress-on-update="false">
             <license-text xlink:href="registration/LICENSE" lang="en-US"/>
         </simple-license>
     </registration>
@@ -26,7 +25,7 @@
     <!-- release-notes -->
 
     <display-name>
-        <name lang="en">Groovy Add-On</name>
+        <name lang="en">My Awesome Add-On</name>
     </display-name>
 
     <icon>

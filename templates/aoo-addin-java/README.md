@@ -59,14 +59,14 @@ In this project you get:
            |     +- groovy
            |     |     |
            |     |     +- <your-package>
-           |     |     |    |
-           |     |     |    +- CentralRegistrationClass.java
-           |     |     |    |
-           |     |     |    +- ${project_class_name}.idl
-           |     |     |    |
-           |     |     |    +- ${project_class_name}Impl.java
-           |     |     |    |
-           |     |     |    +- X${project_class_name}.idl
+           |     |          |
+           |     |          +- CentralRegistrationClass.java
+           |     |          |
+           |     |          +- ${project_class_name}.idl
+           |     |          |
+           |     |          +- ${project_class_name}Impl.java
+           |     |          |
+           |     |          +- X${project_class_name}.idl
            |     |
            |     +- resources
            |

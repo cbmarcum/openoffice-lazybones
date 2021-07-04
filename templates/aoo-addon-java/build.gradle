@@ -53,7 +53,7 @@ dependencies {
 
 ant.importBuild 'ant/build.xml'
 
-version = '0.1.0'
+version = '${project_version}'
 
 
 java {
@@ -98,13 +98,13 @@ RegistrationClasses: com.example.GroovyAddOn
 */
 
 jar {
-    archiveFileName = "GroovyAddOn.jar"
+    archiveFileName = "${project_class_name}.jar"
     manifest {
         attributes('UNO-Type-Path': '',
-                'RegistrationClassName': 'com.example.CentralRegistrationClass',
+                'RegistrationClassName': '${project_package}.CentralRegistrationClass',
                 'Class-Path': configurations.runtimeClasspath.collect { "lib/" + it.getName() }.join(' '))
-        // we need this for new section named com/example/CentralRegistrationClass.class
-        attributes('RegistrationClasses': 'com.example.GroovyAddOn', 'com/example/CentralRegistrationClass.class')
+        // we need this for new section named ${package_path}/CentralRegistrationClass.class
+        attributes('RegistrationClasses': '${project_package}.${project_class_name}', '${package_path}/CentralRegistrationClass.class')
     }
 }
 

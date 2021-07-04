@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--**************************************************************
-* 
+*
 * Licensed to the Apache Software Foundation (ASF) under one
 * or more contributor license agreements.  See the NOTICE file
 * distributed with this work for additional information
@@ -8,21 +8,21 @@
 * to you under the Apache License, Version 2.0 (the
 * "License"); you may not use this file except in compliance
 * with the License.  You may obtain a copy of the License at
-* 
+*
 *   http://www.apache.org/licenses/LICENSE-2.0
-* 
+*
 * Unless required by applicable law or agreed to in writing,
 * software distributed under the License is distributed on an
 * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 * KIND, either express or implied.  See the License for the
 * specific language governing permissions and limitations
 * under the License.
-* 
+*
 *************************************************************-->
 
-<project name="GroovyAddOn" default="default" basedir="." xmlns:if="ant:if" xmlns:unless="ant:unless">
+<project name="${project_class_name}" default="default" basedir="." xmlns:if="ant:if" xmlns:unless="ant:unless">
     <description>Builds, tests, and runs the project extension project.</description>
-    
+
     <fail message="Please build using Ant 1.8.0 or higher.">
         <condition>
             <not>
@@ -30,151 +30,153 @@
             </not>
         </condition>
     </fail>
-    
+
     <target name="-init-ant">
         <property file="ant.properties"/>
     </target>
-    
-    <target name="-uno-project-init" depends="-init-ant"> 
+
+    <target name="-uno-project-init" depends="-init-ant">
         <property name="build.uno.version" value="2.0.6.000205"/>
-        
-        <property name="build.dir" value="../build" />
-        <property name="build.classes.dir" value="../build/classes" />
-        
-        <property name="src.dir" value="../src/main/groovy" />
-        <property name="src.dir.absolute" location="${src.dir}" relative="false"/>
-        
-        <property name="dist.dir" value="../build/libs" />
-        <property name="dist.dir.absolute" location="${dist.dir}" />
-      
+
+        <property name="build.dir" value="../build"/>
+        <property name="build.classes.dir" value="../build/classes"/>
+
+        <property name="src.dir" value="../src/main/groovy"/>
+        <property name="src.dir.absolute" location="${dollar}{src.dir}" relative="false"/>
+
+        <property name="dist.dir" value="../build/libs"/>
+        <property name="dist.dir.absolute" location="${dollar}{dist.dir}"/>
+
         <!-- set variables from SDK and Office -->
         <echo message="setting up UNO environment ..."/>
-        <property name="office.program.dir" value="${office.home.dir}/program" />
-        <property name="office.unopkg" value="${office.program.dir}/unopkg" />
-        <property name="office.soffice" value="${office.program.dir}/soffice" />
-        
-        <property name="oo.sdk.dir" value="${office.home.dir}/sdk" /> 
-        <property name="sdk.bin.dir" value="${oo.sdk.dir}/bin" /> 
-        <property name="oo.unotypes.rdb" value="-X${office.program.dir}/types.rdb" /> 
-        <property name="oo.offapi.rdb" value="-X${office.program.dir}/types.rdb" /> 
-        <property name="ure.bin.dir" value="${office.program.dir}" /> 
-        
-        <property name="sdk.idl.dir" location="${oo.sdk.dir}/idl"/> 
-        <property name="sdk.idlc" value="${sdk.bin.dir}/idlc"/>
-        <property name="sdk.regmerge" value="${ure.bin.dir}/regmerge"/>
-        <property name="sdk.javamaker" value="${sdk.bin.dir}/javamaker"/>
-        
-        <property name="idl.out" location="${build.dir}/idl" relative="false" />
-        <property name="idl.classes.dir" location="${build.classes.dir}" relative="false" />
-        <property name="idl.out.urd" value="${idl.out}/urd"/>
-        <property name="idl.out.rdb" value="${idl.out}/rdb"/>
-        <property name="idl.rdb.name" value="types.rdb"/>
-        <property name="idl.rdb.fullpath" value="${idl.out.rdb}/${idl.rdb.name}"/>
+        <property name="office.program.dir" value="${dollar}{office.home.dir}/program"/>
+        <property name="office.unopkg" value="${dollar}{office.program.dir}/unopkg"/>
+        <property name="office.soffice" value="${dollar}{office.program.dir}/soffice"/>
 
-        <property name="images.base.dir" value="${build.dir}/img"/> 
-        <property name="build.registry.dir" value="${build.dir}/cpreg"/> 
-        
-        <mkdir dir="${idl.out}"/>
-        <mkdir dir="${idl.out.urd}"/>
-        <mkdir dir="${idl.out.rdb}"/>
-        <mkdir dir="${images.base.dir}"/>
-        <mkdir dir="${build.registry.dir}"/>
+        <property name="oo.sdk.dir" value="${dollar}{office.home.dir}/sdk"/>
+        <property name="sdk.bin.dir" value="${dollar}{oo.sdk.dir}/bin"/>
+        <property name="oo.unotypes.rdb" value="-X${dollar}{office.program.dir}/types.rdb"/>
+        <property name="oo.offapi.rdb" value="-X${dollar}{office.program.dir}/types.rdb"/>
+        <property name="ure.bin.dir" value="${dollar}{office.program.dir}"/>
+
+        <property name="sdk.idl.dir" location="${dollar}{oo.sdk.dir}/idl"/>
+        <property name="sdk.idlc" value="${dollar}{sdk.bin.dir}/idlc"/>
+        <property name="sdk.regmerge" value="${dollar}{ure.bin.dir}/regmerge"/>
+        <property name="sdk.javamaker" value="${dollar}{sdk.bin.dir}/javamaker"/>
+
+        <property name="idl.out" location="${dollar}{build.dir}/idl" relative="false"/>
+        <property name="idl.classes.dir" location="${dollar}{build.classes.dir}" relative="false"/>
+        <property name="idl.out.urd" value="${dollar}{idl.out}/urd"/>
+        <property name="idl.out.rdb" value="${dollar}{idl.out}/rdb"/>
+        <property name="idl.rdb.name" value="types.rdb"/>
+        <property name="idl.rdb.fullpath" value="${dollar}{idl.out.rdb}/${dollar}{idl.rdb.name}"/>
+
+        <property name="images.base.dir" value="${dollar}{build.dir}/img"/>
+        <property name="build.registry.dir" value="${dollar}{build.dir}/cpreg"/>
+
+        <mkdir dir="${dollar}{idl.out}"/>
+        <mkdir dir="${dollar}{idl.out.urd}"/>
+        <mkdir dir="${dollar}{idl.out.rdb}"/>
+        <mkdir dir="${dollar}{images.base.dir}"/>
+        <mkdir dir="${dollar}{build.registry.dir}"/>
 
         <condition property="oo.version.three">
-            <equals arg1="${oo.version.number}" arg2="three"/>
+            <equals arg1="${dollar}{oo.version.number}" arg2="three"/>
         </condition>
     </target>
-    
+
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    
+
     <target name="-uno-idl-idlc-condition" description="check idlc dependencies" depends="-uno-project-init">
-        <uptodate property="idlc.notRequired" targetfile ="${build.dir}/idlc.compile">
-            <srcfiles dir= "${src.dir}" includes="**/*.idl"/>
+        <uptodate property="idlc.notRequired" targetfile="${dollar}{build.dir}/idlc.compile">
+            <srcfiles dir="${dollar}{src.dir}" includes="**/*.idl"/>
         </uptodate>
-    </target>    
-    
+    </target>
+
     <!-- compile UNO idl files: execution -->
-    <target name="-uno-idl-idlc" description="Compile the IDL Conditionally" depends="-uno-idl-idlc-condition" 
-            unless="idlc.notRequired"> 
-        <apply executable="${sdk.idlc}" dir="${office.program.dir}" failonerror="true"> 
-            <env key="PATH" path="${office.tool.path}"/>
-            <env key="LD_LIBRARY_PATH" path="${office.tool.path}"/> 
-            <env key="DYLD_LIBRARY_PATH" path="${office.tool.path}"/>
+    <target name="-uno-idl-idlc" description="Compile the IDL Conditionally" depends="-uno-idl-idlc-condition"
+            unless="idlc.notRequired">
+        <apply executable="${dollar}{sdk.idlc}" dir="${dollar}{office.program.dir}" failonerror="true">
+            <env key="PATH" path="${dollar}{office.tool.path}"/>
+            <env key="LD_LIBRARY_PATH" path="${dollar}{office.tool.path}"/>
+            <env key="DYLD_LIBRARY_PATH" path="${dollar}{office.tool.path}"/>
             <arg value="-C"/>
             <arg value="-O"/>
-            <arg value="${idl.out.urd}"/>
+            <arg value="${dollar}{idl.out.urd}"/>
             <arg value="-I"/>
-            <arg value="${src.dir.absolute}"/>
-            <arg value="-I"/> 
-            <arg value="${sdk.idl.dir}"/> 
-            <fileset dir="${src.dir.absolute}" includes="**/*.idl" casesensitive="yes" id="idl.list.id"/> 
+            <arg value="${dollar}{src.dir.absolute}"/>
+            <arg value="-I"/>
+            <arg value="${dollar}{sdk.idl.dir}"/>
+            <fileset dir="${dollar}{src.dir.absolute}" includes="**/*.idl" casesensitive="yes" id="idl.list.id"/>
         </apply>
         <!-- list for copying idl files in own jar -->
         <property name="idl.file" refid="idl.list.id"/>
-        <propertyfile file="${idl.out}/idl_list.properties">
-            <entry key="idl.file.list" value="${idl.file}"/>
+        <propertyfile file="${dollar}{idl.out}/idl_list.properties">
+            <entry key="idl.file.list" value="${dollar}{idl.file}"/>
         </propertyfile>
-        <replace file="${idl.out}/idl_list.properties" token=".idl" value=".class"/>
-        <replace file="${idl.out}/idl_list.properties" token=";" value=","/>   
+        <replace file="${dollar}{idl.out}/idl_list.properties" token=".idl" value=".class"/>
+        <replace file="${dollar}{idl.out}/idl_list.properties" token=";" value=","/>
     </target>
 
     <!-- merge urd files: execution -->
-    <target name="-uno-idl-regmerge" description="Merge urd Files Conditionally" 
+    <target name="-uno-idl-regmerge" description="Merge urd Files Conditionally"
             depends="-uno-idl-idlc,-uno-idl-idlc-condition" unless="idlc.notRequired">
         <!-- to only extract the new files, delete the old rdb -->
-        <delete file="${idl.rdb.fullpath}"/>        
-        <apply executable="${sdk.regmerge}" dir="${office.program.dir}" failonerror="true">
-            <env key="PATH" path="${office.tool.path}"/>
-            <env key="LD_LIBRARY_PATH" path="${office.tool.path}"/>
-            <env key="DYLD_LIBRARY_PATH" path="${office.tool.path}"/> 
-            <arg file="${idl.rdb.fullpath}"/>
+        <delete file="${dollar}{idl.rdb.fullpath}"/>
+        <apply executable="${dollar}{sdk.regmerge}" dir="${dollar}{office.program.dir}" failonerror="true">
+            <env key="PATH" path="${dollar}{office.tool.path}"/>
+            <env key="LD_LIBRARY_PATH" path="${dollar}{office.tool.path}"/>
+            <env key="DYLD_LIBRARY_PATH" path="${dollar}{office.tool.path}"/>
+            <arg file="${dollar}{idl.rdb.fullpath}"/>
             <arg value="/UCR"/>
-            <fileset dir="${idl.out.urd}" includes="**/*.urd" casesensitive="yes"/>
+            <fileset dir="${dollar}{idl.out.urd}" includes="**/*.urd" casesensitive="yes"/>
         </apply>
     </target>
 
     <!-- should javamaker be executed -->
-    <target name="-uno-idl-javamaker-condition" description="check if rdb was created" 
+    <target name="-uno-idl-javamaker-condition" description="check if rdb was created"
             depends="-uno-idl-regmerge,-uno-idl-idlc-condition">
-        <available file="${idl.rdb.name}" filepath="${idl.out.rdb}" property="javamaker.Required"/>
+        <available file="${dollar}{idl.rdb.name}" filepath="${dollar}{idl.out.rdb}" property="javamaker.Required"/>
     </target>
-    
+
     <!-- generate Java class files from type library: execution -->
-    <target name="-uno-idl-javamaker" depends="-uno-idl-regmerge,-uno-idl-idlc-condition,-uno-idl-javamaker-condition" 
+    <target name="-uno-idl-javamaker" depends="-uno-idl-regmerge,-uno-idl-idlc-condition,-uno-idl-javamaker-condition"
             if="javamaker.Required" unless="idlc.notRequired">
         <echo message="generating java class files from rdb..."/>
-        <exec executable="${sdk.javamaker}" dir="${office.program.dir}" failonerror="true">
-            <env key="PATH" path="${office.tool.path}"/>                
-            <env key="LD_LIBRARY_PATH" path="${office.tool.path}"/>
-            <env key="DYLD_LIBRARY_PATH" path="${office.tool.path}"/> 
+        <exec executable="${dollar}{sdk.javamaker}" dir="${dollar}{office.program.dir}" failonerror="true">
+            <env key="PATH" path="${dollar}{office.tool.path}"/>
+            <env key="LD_LIBRARY_PATH" path="${dollar}{office.tool.path}"/>
+            <env key="DYLD_LIBRARY_PATH" path="${dollar}{office.tool.path}"/>
             <arg value="-BUCR"/>
             <arg value="-O"/>
-            <arg value="${idl.classes.dir}"/>
-            <arg file="${idl.rdb.fullpath}"/>
-            <arg value="${oo.unotypes.rdb}"/> <!-- from ConfigurationSettings -->
-            <arg value="${oo.offapi.rdb}"/> <!-- from ConfigurationSettings -->
+            <arg value="${dollar}{idl.classes.dir}"/>
+            <arg file="${dollar}{idl.rdb.fullpath}"/>
+            <arg value="${dollar}{oo.unotypes.rdb}"/> <!-- from ConfigurationSettings -->
+            <arg value="${dollar}{oo.offapi.rdb}"/> <!-- from ConfigurationSettings -->
         </exec>
     </target>
 
     <target name="-uno-idl-result" depends="-uno-idl-javamaker">
-        <touch file="${build.dir}/idlc.compile"/> 
+        <touch file="${dollar}{build.dir}/idlc.compile"/>
         <echo message="build UNO idl files finished"/>
     </target>
- 
+
     <!-- the main target, called in recursive builds -->
     <target name="uno-idl-compile" description="Compiles UNO idl files" depends="-uno-idl-result"/>
 
-    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->    
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-    <target name="jar-idl-types" depends="uno-idl-compile, -do-uno-types" unless="no.idl.files"> <!-- was -jar-idl-types -->
-        <mkdir dir="${dist.dir}"/> <!-- UPDATED -->
-        <jar basedir="${build.classes.dir}" compress="true" jarfile="${dist.dir}/${idl_types.jar}" includes="${idl.file.list}"> 
+    <target name="jar-idl-types" depends="uno-idl-compile, -do-uno-types"
+            unless="no.idl.files"> <!-- was -jar-idl-types -->
+        <mkdir dir="${dollar}{dist.dir}"/> <!-- UPDATED -->
+        <jar basedir="${dollar}{build.classes.dir}" compress="true"
+             jarfile="${dollar}{dist.dir}/${dollar}{idl_types.jar}" includes="${dollar}{idl.file.list}">
             <manifest>
                 <attribute name="UNO-Type-Path" value="&lt;&gt;"/>
             </manifest>
         </jar>
     </target>
-    
+
     <!-- macro for checking manifest entries from a user manifest -->
     <macrodef name="check-manifest-entry">
         <attribute name="entry.name"/>
@@ -183,56 +185,53 @@
             <condition property="@{condition.property.name}">
                 <and>
                     <!-- if file does not exist, "isfileselected" is not executed -->
-                    <!-- necessary construct because available is not allowed here 
+                    <!-- necessary construct because available is not allowed here
                     but should be according to documentation -->
-                    <istrue value="${build.manifest.exists}"/>
+                    <istrue value="${dollar}{build.manifest.exists}"/>
                     <!-- produces an error if file is not there -->
-                    <isfileselected file="${build.dir}/MANIFEST.MF">
+                    <isfileselected file="${dollar}{build.dir}/MANIFEST.MF">
                         <contains text="@{entry.name}"/>
                     </isfileselected>
                 </and>
             </condition>
         </sequential>
     </macrodef>
-    
+
     <!-- enter idl type definitions if it exists and if the user did not overwrite it -->
     <target name="-do-uno-types" depends="-do-empty-unopath,-do-idl-unopath"/>
-    
+
     <target name="-do-idl-unopath" depends="-check-uno-types" if="own.idl.files" unless="uno.path.exists">
-        <manifest file="${build.dir}/MANIFEST.MF" mode="update">
-            <attribute name="UNO-Type-Path" value="${idl_types.jar}"/> 
-        </manifest>            
+        <manifest file="${dollar}{build.dir}/MANIFEST.MF" mode="update">
+            <attribute name="UNO-Type-Path" value="${dollar}{idl_types.jar}"/>
+        </manifest>
     </target>
-    
+
     <target name="-do-empty-unopath" depends="-check-uno-types" if="no.idl.files" unless="uno.path.exists">
-        <manifest file="${build.dir}/MANIFEST.MF" mode="update"> 
-            <attribute name="UNO-Type-Path" value=""/> 
-        </manifest>            
+        <manifest file="${dollar}{build.dir}/MANIFEST.MF" mode="update">
+            <attribute name="UNO-Type-Path" value=""/>
+        </manifest>
     </target>
-    
+
     <target name="-check-uno-types">
-        <property file="${idl.out}/idl_list.properties"/>
+        <property file="${dollar}{idl.out}/idl_list.properties"/>
         <check-manifest-entry condition.property.name="uno.path.exists" entry.name="UNO-Type-Path"/>
         <condition property="no.idl.files">
-            <equals arg1="${idl.file.list}" arg2="" trim="true"/>
+            <equals arg1="${dollar}{idl.file.list}" arg2="" trim="true"/>
         </condition>
         <condition property="own.idl.files">
             <not>
-                <istrue value="${no.idl.files}"/>
+                <istrue value="${dollar}{no.idl.files}"/>
             </not>
         </condition>
     </target>
-    
-    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->    
-    
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- helper target for debugging properties needs to be called from ant -->
     <target name="list-all-properties" depends="-uno-project-init">
-        <echoproperties />
+        <echoproperties/>
     </target>
-    
+
     <target depends="-init-ant" description="Default task" name="default"/>
-    
-    
-    
-    
-    
+
 </project>

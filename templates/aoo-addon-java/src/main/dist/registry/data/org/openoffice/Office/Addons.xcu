@@ -5,7 +5,7 @@
     <node oor:name="AddonUI">
         <!-- A menu defined in this set will be a top-level menu in the Apache OpenOffice Menu Bar.  -->
         <node oor:name="OfficeMenuBar">
-            <node oor:name="com.example.groovyaddon" oor:op="replace">
+            <node oor:name="${project_package}.${project_lowercase_name}" oor:op="replace">
                 <prop oor:name="Title" oor:type="xs:string">
                     <value/>
                     <value xml:lang="en">AddOn Menu</value>
@@ -19,7 +19,7 @@
                 <node oor:name="Submenu">
                     <node oor:name="m1" oor:op="replace">
                         <prop oor:name="URL" oor:type="xs:string">
-                            <value>com.example.groovyaddon:Command0</value>
+                            <value>${project_package}.${project_lowercase_name}:Command0</value>
                         </prop>
                         <prop oor:name="ImageIdentifier" oor:type="xs:string">
                             <value/>
@@ -37,7 +37,7 @@
                     </node>
                     <node oor:name="m2" oor:op="replace">
                         <prop oor:name="URL" oor:type="xs:string">
-                            <value>com.example.groovyaddon:Command1</value>
+                            <value>${project_package}.${project_lowercase_name}:Command1</value>
                         </prop>
                         <prop oor:name="ImageIdentifier" oor:type="xs:string"> <!-- Obsolete -->
                             <value/>
@@ -59,7 +59,7 @@
         <!-- Toolbars -->
         <node oor:name="OfficeToolBar">
             <!-- Toolbar -->
-            <node oor:name="com.example.groovyaddon" oor:op="replace">
+            <node oor:name="${project_package}.${project_lowercase_name}" oor:op="replace">
                 <prop oor:name="Title" oor:type="xs:string" oor:localized="true">
                     <value xml:lang="en">AddOnToolbar</value>
                 </prop>
@@ -67,7 +67,7 @@
                     <!-- Toolbar Item Command0 -->
                     <node oor:name="m1" oor:op="replace">
                         <prop oor:name="URL" oor:type="xs:string">
-                            <value>com.example.groovyaddon:Command0</value>
+                            <value>${project_package}.${project_lowercase_name}:Command0</value>
                         </prop>
                         <prop oor:name="ImageIdentifier" oor:type="xs:string"> <!-- Obsolete -->
                             <value/>
@@ -102,7 +102,7 @@
                     <!-- Toolbar Item Command1 -->
                     <node oor:name="m3" oor:op="replace">
                         <prop oor:name="URL" oor:type="xs:string">
-                            <value>com.example.groovyaddon:Command1</value>
+                            <value>${project_package}.${project_lowercase_name}:Command1</value>
                         </prop>
                         <prop oor:name="ImageIdentifier" oor:type="xs:string"> <!-- Obsolete -->
                             <value/>
@@ -122,41 +122,41 @@
             </node>
         </node>
         <node oor:name="Images">
-            <node oor:name="com.example.groovyaddon.command0.images" oor:op="replace">
+            <node oor:name="${project_package}.${project_lowercase_name}.command0.images" oor:op="replace">
                 <prop oor:name="URL" oor:type="xs:string">
-                    <value>com.example.groovyaddon:Command0</value>
+                    <value>${project_package}.${project_lowercase_name}:Command0</value>
                 </prop>
                 <node oor:name="UserDefinedImages">
                     <prop oor:name="ImageSmallURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-16x16.png</value>
                     </prop>
                     <prop oor:name="ImageBigURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-26x26.png</value>
                     </prop>
                     <prop oor:name="ImageSmallHCURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-16x16.png</value>
                     </prop>
                     <prop oor:name="ImageBigHCURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-26x26.png</value>
                     </prop>
                 </node>
             </node>
-            <node oor:name="com.example.groovyaddon.command1.images" oor:op="replace">
+            <node oor:name="${project_package}.${project_lowercase_name}.command1.images" oor:op="replace">
                 <prop oor:name="URL" oor:type="xs:string">
-                    <value>com.example.groovyaddon:Command1</value>
+                    <value>${project_package}.${project_lowercase_name}:Command1</value>
                 </prop>
                 <node oor:name="UserDefinedImages">
                     <prop oor:name="ImageSmallURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-16x16.png</value>
                     </prop>
                     <prop oor:name="ImageBigURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-26x26.png</value>
                     </prop>
                     <prop oor:name="ImageSmallHCURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-16x16.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-16x16.png</value>
                     </prop>
                     <prop oor:name="ImageBigHCURL">
-                        <value>vnd.sun.star.extension://com.example.GroovyAddOn/images/cblogo-26x26.png</value>
+                        <value>vnd.sun.star.extension://${project_package}.${project_class_name}/images/cblogo-26x26.png</value>
                     </prop>
                 </node>
             </node>

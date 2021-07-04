@@ -1,4 +1,4 @@
-package com.example;
+package ${project_package};
 
 import com.sun.star.awt.*;
 import com.sun.star.container.XIndexAccess;
@@ -28,7 +28,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public final class GroovyAddOn extends WeakBase
+public final class ${project_class_name} extends WeakBase
         implements com.sun.star.lang.XServiceInfo,
         com.sun.star.frame.XDispatch,
         com.sun.star.lang.XInitialization,
@@ -36,11 +36,11 @@ public final class GroovyAddOn extends WeakBase
 
     private final XComponentContext m_xContext;
     private com.sun.star.frame.XFrame m_xFrame;
-    private static final String m_implementationName = GroovyAddOn.class.getName();
+    private static final String m_implementationName = ${project_class_name}.class.getName();
     private static final String[] m_serviceNames = {
             "com.sun.star.frame.ProtocolHandler"};
 
-    public GroovyAddOn(XComponentContext context) {
+    public ${project_class_name}(XComponentContext context) {
         m_xContext = context;
     }
 
@@ -49,7 +49,7 @@ public final class GroovyAddOn extends WeakBase
         XSingleComponentFactory xFactory = null;
 
         if (sImplementationName.equals(m_implementationName)) {
-            xFactory = Factory.createComponentFactory(GroovyAddOn.class, m_serviceNames);
+            xFactory = Factory.createComponentFactory(${project_class_name}.class, m_serviceNames);
         }
         return xFactory;
     }
@@ -83,10 +83,11 @@ public final class GroovyAddOn extends WeakBase
     // com.sun.star.frame.XDispatch:
     public void dispatch(com.sun.star.util.URL aURL,
                          com.sun.star.beans.PropertyValue[] aArguments) {
-        if (aURL.Protocol.compareTo("com.example.groovyaddon:") == 0) {
+        if (aURL.Protocol.compareTo("${project_package}.${project_lowercase_name}:") == 0) {
             if (aURL.Path.compareTo("Command0") == 0) {
                 // add your own code here
 
+                /* SAMPLE COMMAND CODE BEGIN */
                 com.sun.star.frame.XController xController = m_xFrame.getController();
                 XModel xModel = xController.getModel();
                 XTextDocument xTextDocument = UnoRuntime.queryInterface(XTextDocument.class, xModel);
@@ -166,12 +167,11 @@ public final class GroovyAddOn extends WeakBase
                     // set it to bold
                     xPropertySet.setPropertyValue("CharWeight",
                             new Float( com.sun.star.awt.FontWeight.BOLD ));
-
                 }
                 catch( Exception e) {
                     e.printStackTrace(System.err);
                 }
-
+                /* SAMPLE COMMAND CODE END */
 
                 return;
             }
@@ -179,8 +179,8 @@ public final class GroovyAddOn extends WeakBase
             if (aURL.Path.compareTo("Command1") == 0) {
                 // add your own code here
 
+                /* SAMPLE COMMAND CODE BEGIN */
                 com.sun.star.frame.XController xController = m_xFrame.getController();
-                // XModel xModel = xController.getModel();
 
                 //the writer controller impl supports the css.view.XSelectionSupplier interface
                 XSelectionSupplier xSelectionSupplier = UnoRuntime.queryInterface(XSelectionSupplier.class, xController);
@@ -224,15 +224,15 @@ public final class GroovyAddOn extends WeakBase
                     short infoBoxResult = xMessageBox.execute();
 
                 }
-
-
-
+                /* SAMPLE COMMAND CODE END */
 
                 return;
             }
         }
     }
 
+    /* SAMPLE COMMAND HELPER METHOD */
+    // count the words
     public Integer wordcount(XIndexAccess xIndexAccess) {
 
         Integer result = 0;
@@ -262,6 +262,7 @@ public final class GroovyAddOn extends WeakBase
         return result;
     }
 
+    /* SAMPLE COMMAND HELPER METHOD */
     // display the count in a Swing dialog
     public void doDisplay(Integer numWords) {
 
@@ -305,7 +306,7 @@ public final class GroovyAddOn extends WeakBase
     public com.sun.star.frame.XDispatch queryDispatch(com.sun.star.util.URL aURL,
                                                       String sTargetFrameName,
                                                       int iSearchFlags) {
-        if (aURL.Protocol.compareTo("com.example.groovyaddon:") == 0) {
+        if (aURL.Protocol.compareTo("${project_package}.${project_lowercase_name}:") == 0) {
             if (aURL.Path.compareTo("Command0") == 0) {
                 return this;
             }

@@ -16,11 +16,12 @@ props.project_package = ask("Define value for 'package' [" + props.project_group
 props.project_class_name = ask("Define value for 'className' [" + props.project_class_name + "]: ", props.project_class_name, "className").capitalize()
 props.project_property_name = transformText(props.project_class_name, from: NameType.CAMEL_CASE, to: NameType.PROPERTY)
 props.project_capitalized_name = props.project_property_name.capitalize()
+props.project_lowercase_name = props.project_property_name.toString().toLowerCase()
 
 props.package_path = props.project_package.replace('.' as char, '/' as char)
 props.module_path = props.project_package.replace('.' as char, '_' as char)
 
-// strings used in IDL file
+// strings used in IDL file (if we had one)
 props.module_start = ""
 props.module_end = ""
 props.project_package.split('\\.').each {
@@ -34,7 +35,7 @@ props.office_home_dir='C\\:\\\\Program Files (x86)\\\\OpenOffice 4'
 props.office_tool_path='C\\:\\\\Program Files (x86)\\\\OpenOffice 4\\\\program'
 props.dollar='$'
 
-// props.buildDir = '$buildDir'
+props.buildDir = '$buildDir'
 // props.prefix = '$prefix'
 // props.it = 'it'
 
@@ -47,8 +48,10 @@ processTemplates 'gradle.properties', props
 processTemplates 'README.md', props
 processTemplates 'ant/ant.properties', props
 processTemplates 'ant/build.xml', props
+processTemplates 'src/main/dist/description/description_en.txt', props
 processTemplates 'src/main/dist/META-INF/manifest.xml', props
-processTemplates 'src/main/dist/registry/data/org/openoffice/Office/CalcAddins.xcu', props
+processTemplates 'src/main/dist/registry/data/org/openoffice/Office/Addons.xcu', props
+processTemplates 'src/main/dist/registry/data/org/openoffice/Office/ProtocolHandler.xcu', props
 processTemplates 'src/main/dist/description.xml', props
 processTemplates 'src/main/groovy/*.groovy', props
 processTemplates 'src/main/groovy/*.java', props
@@ -78,6 +81,6 @@ testSources.eachFile { File file ->
     renameFile(file, testSourcesPath.absolutePath + '/' + props.project_capitalized_name + file.name)
 }
 
-renameFile(new File(mainSourcesPath, 'GroovyAddInImpl.java'), mainSourcesPath.absolutePath + '/' + props.project_class_name + "Impl.java")
-renameFile(new File(mainSourcesPath, 'GroovyAddIn.idl'), mainSourcesPath.absolutePath + '/' + props.project_class_name + ".idl")
-renameFile(new File(mainSourcesPath, 'XGroovyAddIn.idl'), mainSourcesPath.absolutePath + '/X' + props.project_class_name + ".idl")
+renameFile(new File(mainSourcesPath, 'GroovyAddOn.java'), mainSourcesPath.absolutePath + '/' + props.project_class_name + ".java")
+// renameFile(new File(mainSourcesPath, 'GroovyAddIn.idl'), mainSourcesPath.absolutePath + '/' + props.project_class_name + ".idl")
+// renameFile(new File(mainSourcesPath, 'XGroovyAddIn.idl'), mainSourcesPath.absolutePath + '/X' + props.project_class_name + ".idl")

@@ -24,7 +24,7 @@
  * Created on 2021.01.27 - 09:27:59
  *
  */
-package com.example;
+package ${project_package};
 
 import com.sun.star.lang.XSingleComponentFactory;
 import com.sun.star.registry.XRegistryKey;
